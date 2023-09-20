@@ -1,0 +1,110 @@
+.container-fuild {
+    position: fixed;
+    top: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .table-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5rem;
+    font-size: 2rem;
+  }
+  
+  table {
+    width: 1300px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  td {
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+  }
+  
+  th {
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: black;
+  }
+  
+  tr:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  #function {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .function-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: #11101d solid 0.5px;
+    border-radius: 5px;
+  }
+  #delete:hover {
+    background-color: rgb(253, 68, 68);
+  }
+  
+  #detail:hover {
+    background-color: var(--hover-color);
+  }
+  .function-btn .bx {
+    font-size: 1.5rem;
+    color: #11101d;
+  }
+  
+  /* Pagination */
+  .pagination {
+    position: absolute;
+    width: 10rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    bottom: 3rem;
+    right: 10%;
+  }
+  
+  .pagination-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 2rem;
+    border: #11101d solid 0.5px;
+    border-radius: 5px;
+    margin: 0.5rem;
+  }
+  .pagination-button .bx {
+    font-size: 1.5rem;
+    color: #2e2f31;
+    padding: 0.2rem;
+  }
+  
+  .pagination-button:hover {
+    background-color: var(--text-color);
+  }
+  
+  /* Table function */
+  .table-function {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .table-function .function-btn {
+    width: 5rem;
+  }
+  
+  .table-function .function-btn:hover {
+    background-color: rgb(134, 134, 247);
+  }
+  

@@ -1,0 +1,238 @@
+{
+    "contract": [
+      {
+        "id": 1,
+        "someContracts": "HD-001",
+        "startDate": "12/12/2023",
+        "endDate": "02/02/2024",
+        "deposit": "500",
+        "totalPrice": "2000"
+      },
+      {
+        "id": 2,
+        "someContracts": "HD-002",
+        "startDate": "12/9/2023",
+        "endDate": "02/12/2023",
+        "deposit": "500",
+        "totalPrice": "1500"
+      },
+      {
+        "id": 3,
+        "someContracts": "HD-003",
+        "startDate": "12/10/2023",
+        "endDate": "02/04/2024",
+        "deposit": "1000",
+        "totalPrice": "3000"
+      },
+      {
+        "someContracts": "ok",
+        "startDate": "2024-02-02",
+        "endDate": "2024-02-02",
+        "deposit": 2,
+        "totalPrice": 1000,
+        "id": 4
+      },
+      {
+        "someContracts": "hg213",
+        "startDate": "2024-02-02",
+        "endDate": "2025-02-02",
+        "deposit": 997,
+        "totalPrice": 9779,
+        "id": 5
+      },
+      {
+        "someContracts": "HĐ-1234",
+        "startDate": "2024-02-02",
+        "endDate": "2024-03-02",
+        "deposit": 9999,
+        "totalPrice": 100000,
+        "id": 6
+      }
+    ],
+    "customers": [
+      {
+        "id": 1,
+        "fullName": "Nguyen Van A",
+        "dateOfBirth": "1990-01-01",
+        "gender": "Male",
+        "idCard": "123456789",
+        "phoneNumber": "0987654321",
+        "email": "nguyenvana@example.com",
+        "customerType": {
+          "id": 4,
+          "name": "Platinium"
+        },
+        "address": "Hanoi"
+      },
+      {
+        "id": 2,
+        "fullName": "Tran Thi B",
+        "dateOfBirth": "1995-02-02",
+        "gender": "Female",
+        "idCard": "987654321",
+        "phoneNumber": "0123456789",
+        "email": "tranthib@example.com",
+        "customerType": {
+          "id": 3,
+          "name": "Gold"
+        },
+        "address": "Ho Chi Minh City"
+      },
+      {
+        "id": 3,
+        "fullName": "Le Van C",
+        "dateOfBirth": "1985-03-03",
+        "gender": "Male",
+        "idCard": "456123789",
+        "phoneNumber": "0369852147",
+        "email": "levanc@example.com",
+        "customerType": {
+          "id": 2,
+          "name": "Silver"
+        },
+        "address": "Da Nang"
+      },
+      {
+        "id": 7,
+        "fullName": "Davi",
+        "dateOfBirth": "2023-01-01",
+        "gender": "famale",
+        "idCard": 123123215,
+        "phoneNumber": "+84901234567",
+        "email": "ok@gmail.com",
+        "customerType": {
+          "id": 1,
+          "name": "Member"
+        },
+        "address": "Da Nang"
+      },
+      {
+        "fullName": "Daaa",
+        "dateOfBirth": "2023-01-01",
+        "gender": "famale",
+        "idCard": 1234567789,
+        "phoneNumber": "+84901234567",
+        "email": "ok@gmail.com",
+        "customerType": {
+          "id": 5,
+          "name": "Diamond"
+        },
+        "address": "ok"
+        
+      },
+      {
+        "fullName": "Ha",
+        "dateOfBirth": "2023-02-02",
+        "gender": "male",
+        "idCard": 123445657658,
+        "phoneNumber": "+84901234567",
+        "email": "ok@gmail.com",
+        "customerType": {
+          "id": 3,
+          "name": "Gold"
+        },
+        "address": "ok"
+        
+      }
+    ],
+    "customerType": [
+      {
+        "id": 1,
+        "name": "Member"
+      },
+      {
+        "id": 2,
+        "name": "Silver"
+      },
+      {
+        "id": 3,
+        "name": "Gold"
+      },
+      {
+        "id": 4,
+        "name": "Platinium"
+      },
+      {
+        "id": 5,
+        "name": "Diamond"
+      }
+    ],
+    "facility": [
+      {
+        "id": 1,
+        "serviceName": "Room",
+        "area": 548,
+        "rentalCost": 1000000,
+        "maxCapacity": 2,
+        "rentalType": "Giờ",
+        "roomStandard": "",
+        "amenities": "",
+        "poolArea": 12,
+        "floors": 1,
+        "freeServices": [
+          "Wifi",
+          "Đậu xe"
+        ],
+        "renalType": "year",
+        "img": "https://themewagon.github.io/seapalace/img/home/explore1.png"
+      },
+      {
+        "id": 3,
+        "serviceName": "Villa",
+        "area": 500,
+        "rentalCost": 2000000,
+        "maxCapacity": 6,
+        "rentalType": "Tháng",
+        "roomStandard": "Vip",
+        "amenities": "Buffet sáng",
+        "poolArea": 40,
+        "floors": 3,
+        "freeServices": "",
+        "img": "https://themewagon.github.io/seapalace/img/home/explore2.png"
+      },
+      {
+        "serviceName": "House",
+        "area": 90,
+        "rentalCost": 12,
+        "maxCapacity": 2,
+        "rentalType": "",
+        "roomStandard": "",
+        "amenities": "",
+        "poolArea": 12,
+        "floors": 1,
+        "freeServices": "",
+        "renalType": "date",
+        "id": 5,
+        "img": "https://themewagon.github.io/seapalace/img/home/explore3.png"
+      },
+      {
+        "id": 6,
+        "serviceName": "Villlllll",
+        "area": 290,
+        "rentalCost": 199999,
+        "maxCapacity": 19,
+        "rentalType": "",
+        "roomStandard": "Vip",
+        "amenities": "ok",
+        "poolArea": 19,
+        "floors": 9,
+        "renalType": "month",
+        "img": "https://themewagon.github.io/seapalace/img/home/explore4.png"
+      },
+      {
+        "serviceName": "Villaaaaaa",
+        "area": 123,
+        "rentalCost": 99999,
+        "maxCapacity": 10,
+        "rentalType": "",
+        "roomStandard": "Vip Vl",
+        "amenities": "Ko có",
+        "poolArea": 40,
+        "floors": 3,
+        "renalType": "year",
+        "id": 7,
+        "img": "https://themewagon.github.io/seapalace/img/home/explore5.png"
+      }
+    ]
+  }
+  
