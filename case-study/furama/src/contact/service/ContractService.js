@@ -8,7 +8,7 @@ export const getAll = async () => {
         console.log(e);
     }
 }
-export const CreateContract = async (contract) => {
+export const createContract = async (contract) => {
     try{
         await axios.post('http://localhost:8080/contract', contract)
     }catch(e){

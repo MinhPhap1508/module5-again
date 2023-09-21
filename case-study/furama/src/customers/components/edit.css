@@ -5,18 +5,20 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    background-color: #e4e9f7;
+    background-color: #ffffff;
+    color: black;
+    font-family: "Playfair Display", serif;
 }
 .form {
     width: 100%;
     max-width: 50rem;
     height: auto;
-    background-color: #addccf;
+    background-color: whitesmoke;
     border-radius: 10px;
     box-shadow: 5px 5px 5px grey;
     margin: 1rem;
     position: relative;
-    top: 5rem;
+    top: 7rem;
 }
 .create__form {
     height: 100%;
@@ -40,7 +42,7 @@ label {
 }
 select {
     width: 103%;
-    padding: 0.6rem;
+    padding: 0.75rem;
     border: 1px solid black;
     border-radius: 10px;
 }

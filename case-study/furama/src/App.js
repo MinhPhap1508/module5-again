@@ -1,4 +1,5 @@
 
+import { ToastContainer } from 'react-toastify';
 import Contract from './contact/components/Contact';
 import CreateContract from './contact/components/CreateContact';
 import './css/style.css'
@@ -15,6 +16,7 @@ import './vendors/nice-select/nice-select.css';
 import './vendors/themify-icons/themify-icons.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -22,6 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      <ToastContainer></ToastContainer>
       <div>
       <Routes>
         <Route path='/' element={<Facility />} />
@@ -32,6 +35,7 @@ function App() {
         <Route path='/create-contract' element={<CreateContract />} />
         <Route path='/create-house' element={<CreateHouse />} />
       </Routes>
+      
       </div>
       {/* <div>
       <Footer/>

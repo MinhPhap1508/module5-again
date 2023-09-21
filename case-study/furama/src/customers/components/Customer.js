@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../components/customer.css';
-import { getAll } from '../service/CustomerService';
+import { deleteCustomer, getAll } from '../service/CustomerService';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Customer() {
     const [customer, setCustomer] = useState([]);
@@ -11,6 +12,11 @@ function Customer() {
     const getCustomer = async () => {
         const res = await getAll();
         setCustomer(res);
+    }
+    const removeCustomer = async (id) => {
+        await deleteCustomer(id)
+        getCustomer();
+        toast("done")
     }
 
     return (
@@ -46,7 +52,7 @@ function Customer() {
                                         <Link className='btn btn-warning'>Edit</Link>
                                     </td>
                                     <td>
-                                        <Link className='btn btn-danger'>Delete</Link>
+                                        <button className='btn btn-danger' onClick={() => removeCustomer(s.id)}>Delete</button>
                                     </td>
                                 </tr>
                             )

@@ -17,21 +17,21 @@ export const getAllCustomerType = async () => {
         console.log(e);
     }
 }
-const createCustomer = async (customer) => {
+export const createCustomer = async (customer) => {
     try{
         await axios.post('http://localhost:8080/customers',customer)
     }catch(e){
         console.log(e);
     }
 }
-const editCustomer = async (customer) => {
+export const editCustomer = async (customer) => {
     try{
         await axios.put('http://localhost:8080/customers/'+customer.id,customer)
     }catch(e){
         console.log(e);
     }
 }
-const deleteCustomer = async (id) => {
+export const deleteCustomer = async (id) => {
     try{
         await axios.delete('http://localhost:8080/customers/'+id)
     }catch(e){

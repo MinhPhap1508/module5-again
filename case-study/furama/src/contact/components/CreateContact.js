@@ -1,92 +1,119 @@
+
+import { createContract } from "../service/ContractService";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from 'yup';
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 function CreateContract () {
+  const navigate = useNavigate();
+  const addNewContract = async (value) => {
+    await createContract(value);
+  }
     return(
         <>
         <h1>Create Contact</h1>
+        <Formik
+        initialValues={{
+          someContract: "",
+          startDate: "",
+          endDate: "",
+          deposit: "",
+          totalPrice: ""
+        }}
+        validationSchema={Yup.object({
+          someContract: Yup.string().required("Some Contract cannot is empty!"),
+          startDate: Yup.string().required("Start Date cannot is empty!"),
+          endDate: Yup.string().required("End Date cannot is empty!"),
+          deposit: Yup.number().min(1,("Deposit should more than 0!")),
+          totalPrice: Yup.number().min(1, ("Total price more than 0"))
+        })}
+        onSubmit={async(values) => {
+           await addNewContract(values)
+            navigate("/contract")
+            toast("Add Contract successfully!")
+        }}
+        >
         <div className="container px-5 my-5">
-  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+  <Form id="contactForm" data-sb-form-api-token="API_TOKEN">
     <div className="mb-3">
       <label className="form-label" htmlFor="numberContact">
         Number Contact
       </label>
-      <input
+      <Field
         className="form-control"
         id="numberContact"
+        name= "someContract"
         type="text"
         placeholder="Number Contact"
         data-sb-validations=""
       />
+      <ErrorMessage className="text-danger" component='span' name="someContract"></ErrorMessage>
     </div>
     <div className="mb-3">
       <label className="form-label" htmlFor="startDate">
         Start Date
       </label>
-      <input
+      <Field
         className="form-control"
         id="startDate"
         type="text"
         placeholder="Start Date"
         data-sb-validations=""
       />
+      <ErrorMessage className="text-danger" component='span' name="startDate"></ErrorMessage>
     </div>
     <div className="mb-3">
       <label className="form-label" htmlFor="endDate">
         End Date
       </label>
-      <input
+      <Field
         className="form-control"
         id="endDate"
         type="text"
         placeholder="End Date"
         data-sb-validations=""
       />
+      <ErrorMessage className="text-danger" component='span' name="endDate"></ErrorMessage>
     </div>
     <div className="mb-3">
       <label className="form-label" htmlFor="deposit">
         Deposit
       </label>
-      <input
+      <Field
         className="form-control"
         id="deposit"
         type="text"
         placeholder="Deposit"
         data-sb-validations=""
       />
+      <ErrorMessage className="text-danger" component='span' name="deposit"></ErrorMessage>
     </div>
     <div className="mb-3">
       <label className="form-label" htmlFor="totalCoast">
         Total Coast
       </label>
-      <input
+      <Field
         className="form-control"
         id="totalCoast"
         type="text"
         placeholder="Total Coast"
         data-sb-validations=""
       />
-    </div>
-    <div className="d-none" id="submitSuccessMessage">
-      <div className="text-center mb-3">
-        <div className="fw-bolder">Form submission successful!</div>
-        <p>To activate this form, sign up at</p>
-        <a href="https://startbootstrap.com/solution/contact-forms">
-          https://startbootstrap.com/solution/contact-forms
-        </a>
-      </div>
-    </div>
-    <div className="d-none" id="submitErrorMessage">
-      <div className="text-center text-danger mb-3">Error sending message!</div>
+      <ErrorMessage className="text-danger" component='span' name="totalCoast"></ErrorMessage>
     </div>
     <div className="d-grid">
       <button
-        className="btn btn-primary btn-lg disabled"
+        className="btn btn-primary"
         id="submitButton"
         type="submit"
       >
         Submit
       </button>
     </div>
-  </form>
+  </Form>
 </div>
+</Formik>
 
         </>
     )
