@@ -8,7 +8,7 @@ export const getAll = async () => {
         console.log(e);
     }
 }
-export const craeteFacility = async (facility) => {
+export const createFacility = async (facility) => {
     try{
         await axios.post('http://localhost:8080/facility', facility)
     }catch(e){

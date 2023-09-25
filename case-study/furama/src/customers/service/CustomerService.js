@@ -17,6 +17,14 @@ export const getAllCustomerType = async () => {
         console.log(e);
     }
 }
+export const getById = async (id) => {
+    try{
+        const result = await axios.get("http://localhost:8080/customerType/"+id)
+        return result.data
+    }catch(e){
+        console.log(e);
+    }
+}
 export const createCustomer = async (customer) => {
     try{
         await axios.post('http://localhost:8080/customers',customer)

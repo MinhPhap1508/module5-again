@@ -130,7 +130,7 @@ button {
     padding-left: 9.5px; } }
 
 .header_area {
-  position: absolute;
+  position: relative;
   width: 100%;
   z-index: 999999;
   background: #fff;

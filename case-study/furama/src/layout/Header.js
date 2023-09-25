@@ -56,13 +56,19 @@ function Header() {
                                     <li className="nav-item submenu dropdown">
                                         <Link to="/create-house" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Service</Link>
                                         <ul className="dropdown-menu">
-                                            <li className="nav-item"><a className="nav-link" href="#">Create Villa</a></li>
+                                            <li className="nav-item"><Link className="nav-link" to="/create-villa">Create Villa</Link></li>
                                             <li className="nav-item"><Link className="nav-link" to="/create-house">Create House</Link>
-                                            </li><li className="nav-item"><a className="nav-link" href="#">Create Room</a>
+                                            </li><li className="nav-item"><Link className="nav-link" to="/create-room">Create Room</Link>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li className="nav-item"><Link className="nav-link" to="/contract">Contract</Link></li>
+                                    <li className="nav-item submenu dropdown">
+                                        <Link to="/contract" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contract</Link>
+                                        <ul className="dropdown-menu">
+                                            <li className="nav-item"><Link className="nav-link" to="/create-contract">Add Contract</Link>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                             <ul className="social-icons ml-auto">

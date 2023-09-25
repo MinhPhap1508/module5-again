@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../components/customer.css';
+// import '../components/customer.css';
 import { deleteCustomer, getAll } from '../service/CustomerService';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -20,9 +20,9 @@ function Customer() {
     }
 
     return (
-        <div className="container-fuild">
+        <div className="container">
             <div className="table-function">
-                <table>
+                <table className='table table-striped table-hover' style={{marginBottom:"10rem"}}>
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -49,7 +49,7 @@ function Customer() {
                                     <td>{s.customerType.name}</td>
                                     <td>{s.address}</td>
                                     <td>
-                                        <Link className='btn btn-warning'>Edit</Link>
+                                        <Link className='btn btn-warning' to={`/edit-customers/${s.id}`}>Edit</Link>
                                     </td>
                                     <td>
                                         <button className='btn btn-danger' onClick={() => removeCustomer(s.id)}>Delete</button>

@@ -4,12 +4,12 @@ import { createFacility } from '../service/FacilityService';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
-function CreateHouse() {
+function CreateRoom() {
   const navigate = useNavigate();
-  const addHouse = async (value) => {
+  const addroom = async (value) => {
     await createFacility(value)
     navigate("/")
-    toast("Add New House Successfully")
+    toast("Add New Rooms Successfully")
 
   } 
     return (
@@ -20,10 +20,8 @@ function CreateHouse() {
           area: "",
           rentalCost: "",
           maxCapacity: "",
-          roomStandaard: "",
-          amenities: "",
-          floors: "",
           rentalType: "",
+          freeServices: "",
           img: ""
         }}
         validationSchema={Yup.object({
@@ -34,15 +32,12 @@ function CreateHouse() {
             .required("Area cannot is empty")
             .min(1, "Area should more than 0!"),
           rentalCost: Yup.string().required("Rental cost cannot is empty"),
-          maxCapacity: Yup.string().required("Capacity cannot is empty"),
+          maxCapacity: Yup.string().required("Capacity cannot is empty")
           // rentalType: Yup.string().required("Rental type cannot is empty"),
-          
-          floors: Yup.number()
-            .required("Floors cannot is empty")
-            .min(1, "Floors should geather than 0!")
+        
         })}
         onSubmit={(values) => {
-          addHouse(values)
+          addroom(values)
         }}>
         <div className="container px-5 my-5">
           <Form id="contactForm" data-sb-form-api-token="API_TOKEN">
@@ -102,40 +97,14 @@ function CreateHouse() {
 
               <Field
                 className="form-control"
-                id="roomStandard"
-                name="roomStandard"
+                id="capacity"
+                name="freeService"
                 type="text"
-                placeholder="Room Standard"
+                placeholder="Capacity"
                 data-sb-validations=""
               />
-              <ErrorMessage className="text-danger" name="roomStandard" component='span'></ErrorMessage>
-              <label htmlFor="roomStandard">Room Standard</label>
-            </div>
-            <div className="form-floating mb-3">
-
-              <Field
-                className="form-control"
-                id="amenities"
-                name="amenities"
-                type="text"
-                placeholder="Amenities"
-                data-sb-validations=""
-              />
-              <ErrorMessage className="text-danger" name="amenities" component='span'></ErrorMessage>
-              <label htmlFor="amenities">Amenities</label>
-            </div>
-            <div className="form-floating mb-3">
-
-              <Field
-                className="form-control"
-                id="floors"
-                name="floors"
-                type="text"
-                placeholder="Floors"
-                data-sb-validations=""
-              />
-              <ErrorMessage className="text-danger" name="floors" component='span'></ErrorMessage>
-              <label htmlFor="floors">Floors</label>
+              <ErrorMessage className="text-danger" name="freeService" component='span'></ErrorMessage>
+              <label htmlFor="capacity">Free Services</label>
             </div>
             <div className="form-floating mb-3">
 
@@ -191,4 +160,4 @@ function CreateHouse() {
     );
 }
 
-export default CreateHouse;
+export default CreateRoom;

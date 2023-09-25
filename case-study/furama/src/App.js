@@ -17,6 +17,8 @@ import './vendors/themify-icons/themify-icons.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
+import { CreateVilla } from './facility/components/CreateVilla';
+import CreateRoom from './facility/components/CreateRoom';
 
 
 
@@ -24,22 +26,24 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <ToastContainer></ToastContainer>
       <div>
       <Routes>
         <Route path='/' element={<Facility />} />
         <Route path='/customers' element={<Customer />} />
         <Route path='/contract' element={<Contract />} />
-        <Route path='/edit-customers' element={<EditCustomer />} />
+        <Route path='/edit-customers/:id' element={<EditCustomer />} />
         <Route path='/create-customers' element={<CreateCustomer />} />
         <Route path='/create-contract' element={<CreateContract />} />
         <Route path='/create-house' element={<CreateHouse />} />
+        <Route path='/create-villa' element={<CreateVilla />} />
+        <Route path='/create-room' element={<CreateRoom />} />
       </Routes>
       
       </div>
-      {/* <div>
+      <div>
       <Footer/>
-      </div> */}
+      </div>
+      <ToastContainer></ToastContainer>
     </BrowserRouter>
   );
 }

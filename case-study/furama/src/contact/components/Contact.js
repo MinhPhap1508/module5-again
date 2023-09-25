@@ -13,7 +13,7 @@ function Contract () {
     },[])
     return(
         <>
-        <div className='container' style={{top:"12rem",position:"relative"}}>
+        <div className='container' style={{position:"relative"}}>
             <h2>Contact List</h2>
             <table className='table table-hover'>
                 <thead>

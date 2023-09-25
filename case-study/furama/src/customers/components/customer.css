@@ -1,12 +1,12 @@
 .container-fuild {
-    position: fixed;
+    position: absolute;
     top: 15rem;
     left: 50%;
     transform: translateX(-50%);
   }
   
   .table-header {
-    position: absolute;
+    /* position: absolute; */
     left: 50%;
     transform: translateX(-50%);
     top: 5rem;

@@ -1,27 +1,28 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { createFacility } from '../service/FacilityService';
-import { toast } from 'react-toastify';
-import * as Yup from 'yup';
-import { Form, Formik, Field, ErrorMessage } from 'formik';
-function CreateHouse() {
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { createFacility } from "../service/FacilityService";
+import { toast } from "react-toastify";
+import * as Yup from 'yup'
+
+export function CreateVilla() {
   const navigate = useNavigate();
-  const addHouse = async (value) => {
+  const addVilla = async (value) => {
     await createFacility(value)
     navigate("/")
-    toast("Add New House Successfully")
-
-  } 
-    return (
-      <div>
+    toast("Done!")
+  }
+  return (
+    <div>
       <Formik
         initialValues={{
           serviceName: "",
           area: "",
           rentalCost: "",
           maxCapacity: "",
+          rentalType: "",
           roomStandaard: "",
           amenities: "",
+          poolArea: "",
           floors: "",
           rentalType: "",
           img: ""
@@ -36,13 +37,14 @@ function CreateHouse() {
           rentalCost: Yup.string().required("Rental cost cannot is empty"),
           maxCapacity: Yup.string().required("Capacity cannot is empty"),
           // rentalType: Yup.string().required("Rental type cannot is empty"),
-          
+          poolArea: Yup.number().required("Pool Area cannot is empty!")
+            .min(1, "Pool area > 0 !"),
           floors: Yup.number()
             .required("Floors cannot is empty")
             .min(1, "Floors should geather than 0!")
         })}
         onSubmit={(values) => {
-          addHouse(values)
+          addVilla(values)
         }}>
         <div className="container px-5 my-5">
           <Form id="contactForm" data-sb-form-api-token="API_TOKEN">
@@ -128,6 +130,19 @@ function CreateHouse() {
 
               <Field
                 className="form-control"
+                id="poolArea"
+                name="poolArea"
+                type="text"
+                placeholder="Pool Area"
+                data-sb-validations=""
+              />
+              <ErrorMessage className="text-danger" name="poolArea" component='span'></ErrorMessage>
+              <label htmlFor="poolArea">Pool Area</label>
+            </div>
+            <div className="form-floating mb-3">
+
+              <Field
+                className="form-control"
                 id="floors"
                 name="floors"
                 type="text"
@@ -188,7 +203,5 @@ function CreateHouse() {
         </div>
       </Formik>
     </div>
-    );
+  )
 }
-
-export default CreateHouse;
