@@ -1,4 +1,4 @@
-import { CREATE_POSTS,GET_ALL_POSTS} from "../../Type";
+import { CREATE_POSTS,GET_ALL_POSTS} from "../Type";
 import { createPosts, getAll } from "../../services/PostsService"
 
 export const getAllPosts = () => async(dispatch) => {

@@ -1,4 +1,4 @@
-import { CREATE_POSTS, GET_ALL_POSTS } from "../../Type";
+import { CREATE_POSTS, GET_ALL_POSTS } from "../Type";
 
 const postsReducer = (posts = [], action) => {
     const {type, payload} = action;
