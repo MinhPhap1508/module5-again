@@ -47,14 +47,13 @@ function Header() {
                                     <li className="nav-item submenu dropdown">
                                         <Link to="/customers" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customer</Link>
                                         <ul className="dropdown-menu">
-                                            <li className="nav-item"><Link className="nav-link" to="/edit-customers">Edit Customer</Link>
-                                            </li><li className="nav-item"><Link className="nav-link" to="/create-customers">Add Customer</Link>
+                                            <li className="nav-item"><Link className="nav-link" to="/create-customers">Add Customer</Link>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li className="nav-item"><a className="nav-link" href="gallery.html">Gallery</a></li>
+                                    
                                     <li className="nav-item submenu dropdown">
-                                        <Link to="/create-house" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Service</Link>
+                                        <Link to="/" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Service</Link>
                                         <ul className="dropdown-menu">
                                             <li className="nav-item"><Link className="nav-link" to="/create-villa">Create Villa</Link></li>
                                             <li className="nav-item"><Link className="nav-link" to="/create-house">Create House</Link>

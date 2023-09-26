@@ -3,9 +3,28 @@ import { useEffect, useState } from 'react';
 import { deleteCustomer, getAll } from '../service/CustomerService';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Modal from './Modal';
 
 function Customer() {
     const [customer, setCustomer] = useState([]);
+    const [page, setPage] = useState(0);
+    const [totalPage, setTotalPage] = useState()
+    const [modal, setModal] = useState({
+        show: false,
+        data: null
+    });
+    const handleCloseModal = () => {
+        setModal({
+            show: false,
+            data: null
+        })
+    }
+    const handleRemove = async (id) => {
+        await deleteCustomer(id)
+        getCustomer()
+        handleCloseModal()
+        toast("Delete Successfully")
+    }
     useEffect(() => {
         getCustomer()
     }, [])
@@ -13,16 +32,23 @@ function Customer() {
         const res = await getAll();
         setCustomer(res);
     }
-    const removeCustomer = async (id) => {
-        await deleteCustomer(id)
-        getCustomer();
-        toast("done")
+    const nextPage = () => {
+        if (page < totalPage) {
+            setPage((prev) => prev + 1)
+        }
+    }
+    const previosPage = () => {
+        if (page > 0) {
+            setPage((prev) => prev - 1)
+
+        }
     }
 
     return (
-        <div className="container">
-            <div className="table-function">
-                <table className='table table-striped table-hover' style={{marginBottom:"10rem"}}>
+        <div className="container"  style={{marginTop:"2rem"}}>
+            <h2 style={{textAlign:"center"}}>Customers List</h2>
+            <div className="table-function" style={{marginTop:"2rem"}}>
+                <table className='table table-striped table-hover' style={{ marginBottom: "10rem" }}>
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -52,12 +78,56 @@ function Customer() {
                                         <Link className='btn btn-warning' to={`/edit-customers/${s.id}`}>Edit</Link>
                                     </td>
                                     <td>
-                                        <button className='btn btn-danger' onClick={() => removeCustomer(s.id)}>Delete</button>
+                                        <button className='btn btn-danger' onClick={() => setModal({
+                                            show: true,
+                                            data: s
+                                        })}>Delete</button>
                                     </td>
                                 </tr>
                             )
                         })}
                     </tbody></table>
+                {/* modal */}
+                {
+                    modal.show && (
+
+                            <Modal
+                            title={"Furama"}
+                            msg={`Do you want delete ${modal.data.fullName}?`}
+                            onClose={handleCloseModal}
+                            onConfirm={() => {handleRemove(modal.data.id)}}
+                            >
+                                
+                            </Modal>
+
+                    )
+                }
+
+
+
+                {/* page */}
+                <div className="d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul className="pagination">
+                            <li className="page-item">
+                                <button className="page-link" onClick={() => (previosPage())} style={{ color: "black" }}>
+                                    Previous
+                                </button>
+                            </li>
+                            <li className="page-item">
+                                <span className="page-link" href="#" style={{ color: "black" }}>
+                                    {page + 1}/{totalPage}
+                                </span>
+                            </li>
+                            <li className="page-item">
+                                <button className="page-link" onClick={() => nextPage()
+                                } href="#" style={{ color: "black" }}>
+                                    Next
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
 

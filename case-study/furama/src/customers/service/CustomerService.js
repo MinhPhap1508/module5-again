@@ -1,9 +1,9 @@
 import axios from "axios"
 
-export const getAll = async () => {
+export const getAll = async (page) => {
     try{
-        const res = await axios.get('http://localhost:8080/customers')
-        console.log(res.data);
+        const res = await axios.get(`http://localhost:8080/customers?page=${page}&limit=2`)
+        // console.log(res);
         return res.data;
     }catch(e){
         console.log(e);
@@ -19,7 +19,7 @@ export const getAllCustomerType = async () => {
 }
 export const getById = async (id) => {
     try{
-        const result = await axios.get("http://localhost:8080/customerType/"+id)
+        const result = await axios.get("http://localhost:8080/customers/"+id)
         return result.data
     }catch(e){
         console.log(e);

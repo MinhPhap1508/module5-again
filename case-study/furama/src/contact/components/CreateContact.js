@@ -4,7 +4,6 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import '../components/contract.css';
 
 function CreateContract() {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ function CreateContract() {
     toast("Add Contract successfully!")
   }
   return (
-    <div className="contract">
+    <div className="container">
       <h1>Create Contact</h1>
       <Formik
         initialValues={{
@@ -24,13 +23,13 @@ function CreateContract() {
           deposit: "",
           totalPrice: ""
         }}
-        // validationSchema={Yup.object({
-        //   someContract: Yup.string().required("Some Contract cannot is empty!"),
-        //   startDate: Yup.string().required("Start Date cannot is empty!"),
-        //   endDate: Yup.string().required("End Date cannot is empty!"),
-        //   deposit: Yup.number().required("Deposit cannot is empty").min(1, ("Deposit should more than 0!")),
-        //   totalPrice: Yup.number().required("Total Price cannot is empty").min(1, ("Total price more than 0"))
-        // })}
+        validationSchema={Yup.object({
+          someContract: Yup.string().required("Some Contract cannot is empty!"),
+          startDate: Yup.string().required("Start Date cannot is empty!"),
+          endDate: Yup.string().required("End Date cannot is empty!"),
+          deposit: Yup.number().required("Deposit cannot is empty").min(1, ("Deposit should more than 0!")),
+          totalPrice: Yup.number().required("Total Price cannot is empty").min(1, ("Total price more than 0"))
+        })}
         onSubmit={(values) => {
           addNewContract(values)
         }}

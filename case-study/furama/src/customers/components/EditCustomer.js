@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../components/edit.css'
 import { editCustomer, getAllCustomerType, getById } from '../service/CustomerService';
 import { useEffect, useState } from 'react';
-import { Form, Formik,Field, ErrorMessage } from 'formik';
+import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import { toast } from 'react-toastify';
 
@@ -13,10 +13,10 @@ function EditCustomer() {
   const param = useParams();
   const getCustomerById = async () => {
     const res = await getById(param.id)
-    const newRes = {...res, customerType:`${JSON.stringify(res.customerType)}`}
+    const newRes = { ...res, customerType: `${JSON.stringify(res.customerType)}` }
     setSelected(newRes)
   }
-  
+
   const getType = async () => {
     const res = await getAllCustomerType()
     setType(res)
@@ -24,52 +24,52 @@ function EditCustomer() {
   const loadCustomer = async (value) => {
     await editCustomer(value)
   }
-  useEffect(()=> {
-getType()
-  },[])
-  useEffect(()=> {
-    if(param){
-    getCustomerById()
+  useEffect(() => {
+    getType()
+  }, [])
+  useEffect(() => {
+    if (param) {
+      getCustomerById()
     }
-  },[param])
-  if(selected === null) {
+  }, [param])
+  if (selected === null) {
     return null
   }
 
   return (
-          <div className="body">
-            <Formik
-            initialValues={selected}
-            validationSchema={Yup.object({
-              fullName: Yup.string()
-                .required("Customer name cannot be blank")
-                .matches(/^[A-Z][a-z]*$/, "Name is invalid"),
-              dateOfBirth: Yup.string()
-                .required("Dob cannot is empty"),
-              gender: Yup.string().required("Gender cannot is empty"),
-              idCard: Yup.string()
-                .required("ID Card cannot is empty")
-                .matches(/^\d{9}|\d{12}$/, "Id Card is Invalid"),
-              phoneNumber: Yup.string()
-                .required("Phone cannot is empty")
-                .matches(/^(?:\+?84)?(90|91)\d{7}$/, "Invalid"),
-              email: Yup.string()
-                .required("Email cannot is empty")
-                .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Invalid"),
-              address: Yup.string()
-                .required("Address cannot is empty!")
-            })}
-            onSubmit={ (values) => {
-              const newValues = {...values, customerType:JSON.parse(values.customerType)}
-               loadCustomer(newValues)
-               navigate("/customers")
-               toast("Edited successfully!")
-            }}
-            >
-      <div className="form">
-        <div className="form-header">Edit customer</div>
-        <Form className="create__form">
-        <div className="form__input-content">
+    <div className="body">
+      <Formik
+        initialValues={selected}
+        validationSchema={Yup.object({
+          fullName: Yup.string()
+            .required("Customer name cannot be blank")
+            .matches(/^[A-Z][a-z]*$/, "Name is invalid"),
+          dateOfBirth: Yup.string()
+            .required("Dob cannot is empty"),
+          gender: Yup.string().required("Gender cannot is empty"),
+          idCard: Yup.string()
+            .required("ID Card cannot is empty")
+            .matches(/^\d{9}|\d{12}$/, "Id Card is Invalid"),
+          phoneNumber: Yup.string()
+            .required("Phone cannot is empty")
+            .matches(/^(?:\+?84)?(90|91)\d{7}$/, "Invalid"),
+          email: Yup.string()
+            .required("Email cannot is empty")
+            .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Invalid"),
+          address: Yup.string()
+            .required("Address cannot is empty!")
+        })}
+        onSubmit={(values) => {
+          const newValues = { ...values, customerType: JSON.parse(values.customerType) }
+          loadCustomer(newValues)
+          navigate("/customers")
+          toast("Edited successfully!")
+        }}
+      >
+        <div className="form">
+          <div className="form-header">Edit customer</div>
+          <Form className="create__form">
+            <div className="form__input-content">
               <div className="div">
                 <label htmlFor="name">Customer Name</label>
                 <Field type="text" className="form__input" id="name" name="fullName" />
@@ -121,9 +121,9 @@ getType()
                 <Field as="select" name="customerType">
                   {
                     type.map((ty) => (
-                      
-                        <option className='option' value={`${JSON.stringify(ty)}`}>{ty.name}</option>
-                      
+
+                      <option className='option' value={`${JSON.stringify(ty)}`}>{ty.name}</option>
+
                     ))
                   }
                 </Field>
@@ -132,8 +132,8 @@ getType()
             <div className="end-buttons">
               <button className="my-button" type='submit'>Edit</button>
             </div>
-        </Form>
-      </div>
+          </Form>
+        </div>
       </Formik>
     </div>
 

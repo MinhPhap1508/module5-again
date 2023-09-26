@@ -31,10 +31,7 @@ function CreateCustomer() {
         idCard: "",
         phoneNumber: "",
         email: "",
-        customerType: `${JSON.stringify({
-          "id": 1,
-          "name": "Member"
-        })}`
+        customerType: {}
       }}
       validationSchema={Yup.object({
         fullName: Yup.string()

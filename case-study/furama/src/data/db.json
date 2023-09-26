@@ -47,14 +47,6 @@
       "deposit": 9999,
       "totalPrice": 100000,
       "id": 6
-    },
-    {
-      "someContract": "",
-      "startDate": "",
-      "endDate": "",
-      "deposit": "",
-      "totalPrice": "",
-      "id": 7
     }
   ],
   "customers": [
@@ -87,33 +79,18 @@
       "address": "Ho Chi Minh City"
     },
     {
-      "fullName": "Thanh",
-      "dateOfBirth": "2022-11-30",
+      "fullName": "David",
+      "dateOfBirth": "2022-12-31",
       "gender": "famale",
-      "idCard": 998765421345,
+      "idCard": 75348673867387,
       "phoneNumber": "+84901234567",
       "email": "ok@gmail.com",
-      "customerType": {
-        "id": 4,
-        "name": "Platinium"
-      },
-      "address": "hue",
-      "id": 3
-    },
-    {
-      "id": 4,
-      "name": "Platinium",
       "customerType": {
         "id": 3,
         "name": "Gold"
       },
-      "fullName": "Looo",
-      "idCard": 84576458976389580000,
-      "phoneNumber": "+84901234567",
-      "dateOfBirth": "2021-11-30",
-      "email": "minhphapclt@gmail.com",
-      "gender": "famale",
-      "address": "hue"
+      "address": "hue",
+      "id": 3
     }
   ],
   "customerType": [
@@ -240,17 +217,6 @@
       "img": "https://storage.googleapis.com/digital-platform/hinh_anh_biet_thu_la_gi_cac_loai_hinh_biet_thu_thuong_gap_nhat_o_viet_nam_so_3_766fac705b/hinh_anh_biet_thu_la_gi_cac_loai_hinh_biet_thu_thuong_gap_nhat_o_viet_nam_so_3_766fac705b.jpg",
       "roomStandard": "Normal",
       "id": 9
-    },
-    {
-      "serviceName": "Rooms",
-      "area": "40",
-      "rentalCost": "10",
-      "maxCapacity": "2",
-      "rentalType": "date",
-      "freeServices": "",
-      "img": "https://storage.googleapis.com/digital-platform/hinh_anh_biet_thu_la_gi_cac_loai_hinh_biet_thu_thuong_gap_nhat_o_viet_nam_so_12_11086675dc/hinh_anh_biet_thu_la_gi_cac_loai_hinh_biet_thu_thuong_gap_nhat_o_viet_nam_so_12_11086675dc.jpg",
-      "freeService": "Wifi",
-      "id": 10
     }
   ]
 }
