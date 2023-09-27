@@ -1,8 +1,17 @@
 import axios from "axios"
+import { toast } from "react-toastify";
 
 export const getAll = async () => {
     try{
         const res = await axios.get('http://localhost:8080/facility')
+        return res.data
+    }catch(e){
+        console.log(e);
+    }
+}
+export const getById = async (id) => {
+    try{
+        const res = await axios.get("http://localhost:8080/facility/"+id)
         return res.data
     }catch(e){
         console.log(e);
@@ -20,6 +29,7 @@ export const editFacility = async (facility) => {
         await axios.put('http://localhost:8080/facility/'+facility.id, facility)
     }catch(e){
         console.log(e);
+        toast("Edit thất bại")
     }
 } 
 export const deleteFacility = async (id) => {

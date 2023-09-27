@@ -4,11 +4,17 @@ import { deleteCustomer, getAll } from '../service/CustomerService';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Modal from './Modal';
+import { TbArrowBigLeftLinesFilled, TbArrowBigRightLinesFilled } from "react-icons/tb";
+import { FaRegGem } from "react-icons/fa";
 
 function Customer() {
     const [customer, setCustomer] = useState([]);
-    const [page, setPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    // const [record, setRecord] = useState();
+    const limit = 2;
     const [totalPage, setTotalPage] = useState()
+    const [searchName, setSearchName] = useState("");
+    const [refesh, setRefesh] = useState(true);
     const [modal, setModal] = useState({
         show: false,
         data: null
@@ -26,28 +32,42 @@ function Customer() {
         toast("Delete Successfully")
     }
     useEffect(() => {
-        getCustomer()
-    }, [])
-    const getCustomer = async () => {
-        const res = await getAll();
-        setCustomer(res);
+        getCustomer(currentPage, searchName)
+    }, [refesh, searchName ])
+    const getCustomer = async (page, searchName) => {
+        const res = await getAll(page, limit, searchName);
+        console.log("list" + res);
+        setCustomer(res[0]);
+        // setRecord(res[1]);
+        setTotalPage(Math.ceil(res[1] / limit));
     }
     const nextPage = () => {
-        if (page < totalPage) {
-            setPage((prev) => prev + 1)
+        if (currentPage < totalPage) {
+            setCurrentPage(currentPage + 1)
+            setRefesh(!refesh)
         }
     }
     const previosPage = () => {
-        if (page > 0) {
-            setPage((prev) => prev - 1)
-
-        }
+        setCurrentPage(currentPage - 1)
+        setRefesh(!refesh)
+    }
+    const handleSearch = async () => {
+        setCurrentPage(1);
+        getCustomer(currentPage, searchName)
+        setRefesh(!refesh)
     }
 
     return (
-        <div className="container"  style={{marginTop:"2rem"}}>
-            <h2 style={{textAlign:"center"}}>Customers List</h2>
-            <div className="table-function" style={{marginTop:"2rem"}}>
+        <div className="container" style={{ marginTop: "2rem" }}>
+            <h2 style={{ textAlign: "center" }}>Customers List</h2>
+            <div>
+                <input onChange={(event) => setSearchName(event.target.value)} placeholder="SEARCH" style={{width:"20%"}} />
+                {/* <button className="btn btn-primary" onClick={handleSearch}>Search</button> */}
+            </div>
+            <div>
+                <Link to="/create-customers" className='float-end' style={{scale:"1.8"}}><FaRegGem/></Link>
+            </div>
+            <div className="table-function" style={{ marginTop: "2rem" }}>
                 <table className='table table-striped table-hover' style={{ marginBottom: "10rem" }}>
                     <thead>
                         <tr>
@@ -86,19 +106,37 @@ function Customer() {
                                 </tr>
                             )
                         })}
-                    </tbody></table>
+                    </tbody>
+                    
+                    <div style={{ whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'inline-block', marginRight: '10px' }}>
+                        <button onClick={() => previosPage()} className={`btn btn-primary ${currentPage <= 1 ? "disabled" : ""}`}>
+                            <TbArrowBigLeftLinesFilled/>
+                        </button>
+                    </div>
+                    <div style={{ display: 'inline-block' }}>
+                        <button onClick={() => nextPage()} className={`btn btn-primary ${currentPage >= totalPage ? "disabled" : ""}`}>
+                            <TbArrowBigRightLinesFilled/>
+                        </button>
+                    </div>
+                </div>
+                    
+                    </table>
+
+                
+
                 {/* modal */}
                 {
                     modal.show && (
 
-                            <Modal
+                        <Modal
                             title={"Furama"}
                             msg={`Do you want delete ${modal.data.fullName}?`}
                             onClose={handleCloseModal}
-                            onConfirm={() => {handleRemove(modal.data.id)}}
-                            >
-                                
-                            </Modal>
+                            onConfirm={() => { handleRemove(modal.data.id) }}
+                        >
+
+                        </Modal>
 
                     )
                 }
@@ -106,28 +144,7 @@ function Customer() {
 
 
                 {/* page */}
-                <div className="d-flex justify-content-center">
-                    <nav aria-label="Page navigation example">
-                        <ul className="pagination">
-                            <li className="page-item">
-                                <button className="page-link" onClick={() => (previosPage())} style={{ color: "black" }}>
-                                    Previous
-                                </button>
-                            </li>
-                            <li className="page-item">
-                                <span className="page-link" href="#" style={{ color: "black" }}>
-                                    {page + 1}/{totalPage}
-                                </span>
-                            </li>
-                            <li className="page-item">
-                                <button className="page-link" onClick={() => nextPage()
-                                } href="#" style={{ color: "black" }}>
-                                    Next
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+
             </div>
         </div>
 

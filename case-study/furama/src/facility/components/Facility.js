@@ -52,7 +52,7 @@ function Facility() {
                     </div>
                     <div className="card-body">
                       <h3 className="card-explore__price">${f.rentalCost} <sub>/ Per Night</sub></h3>
-                      <h4 className="card-explore__title"><a href="#">{setFacility.serviceName}</a></h4>
+                      <h4 className="card-explore__title"><a href="#">{f.serviceName}</a></h4>
                       <p>{f.rentalType}----Beginning fourth dominion creeping god was. Beginning, which fly yieldi dry beast moved blessed </p>
                       <Link className="card-explore__link"
                         onClick={() => setModal({
@@ -60,6 +60,7 @@ function Facility() {
                           data: f
                         })}
                       >Delete Now <i className="ti-arrow-right" /></Link>
+                      <Link className="card-explore__link float-end" to={`/edit-facility/${f.id}`}>Edit <i className="ti-arrow-right" /></Link>
                     </div>
                   </div>
                 </div>

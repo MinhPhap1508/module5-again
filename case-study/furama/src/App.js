@@ -19,6 +19,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 import { CreateVilla } from './facility/components/CreateVilla';
 import CreateRoom from './facility/components/CreateRoom';
+import { EditFacility } from './facility/components/EditFacility';
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path='/create-house' element={<CreateHouse />} />
         <Route path='/create-villa' element={<CreateVilla />} />
         <Route path='/create-room' element={<CreateRoom />} />
+        <Route path='/edit-facility/:id' element={<EditFacility />} />
       </Routes>
       
       </div>

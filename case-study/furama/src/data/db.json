@@ -80,7 +80,7 @@
     },
     {
       "fullName": "David",
-      "dateOfBirth": "2022-12-31",
+      "dateOfBirth": "2022-12-29",
       "gender": "famale",
       "idCard": 75348673867387,
       "phoneNumber": "+84901234567",
@@ -138,7 +138,7 @@
       "id": 3,
       "serviceName": "Villa",
       "area": 500,
-      "rentalCost": 2000000,
+      "rentalCost": "2000",
       "maxCapacity": 6,
       "rentalType": "Tháng",
       "roomStandard": "Vip",
