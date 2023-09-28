@@ -25,7 +25,7 @@
       "totalPrice": "3000"
     },
     {
-      "someContracts": "ok",
+      "someContracts": "HĐ-1234",
       "startDate": "2024-02-02",
       "endDate": "2024-02-02",
       "deposit": 2,
@@ -33,7 +33,7 @@
       "id": 4
     },
     {
-      "someContracts": "hg213",
+      "someContracts": "HD-007",
       "startDate": "2024-02-02",
       "endDate": "2025-02-02",
       "deposit": 997,
@@ -47,6 +47,14 @@
       "deposit": 9999,
       "totalPrice": 100000,
       "id": 6
+    },
+    {
+      "someContracts": "HĐ-1234",
+      "startDate": "2023-01-01",
+      "endDate": "2024-01-01",
+      "deposit": "90",
+      "totalPrice": "900",
+      "id": 7
     }
   ],
   "customers": [

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from 'react';
 import { getAll } from '../service/ContractService';
+import { Link } from 'react-router-dom';
 
 function Contract () {
     const [contract, setContract] = useState([])
@@ -23,6 +24,7 @@ function Contract () {
                         <th>End date</th>
                         <th>Deposit</th>
                         <th>Total Coast</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,6 +37,9 @@ function Contract () {
                                     <td>{con.endDate}</td>
                                     <td>{con.deposit}</td>
                                     <td>{con.totalPrice}</td>
+                                    <td>
+                                        <Link to={`/contract/edit/${con.id}`}>Edit</Link>
+                                    </td>
                                 </tr>
                             )
                         })

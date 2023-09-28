@@ -9,7 +9,7 @@ import { FaRegGem } from "react-icons/fa";
 
 function Customer() {
     const [customer, setCustomer] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
     // const [record, setRecord] = useState();
     const limit = 2;
     const [totalPage, setTotalPage] = useState()

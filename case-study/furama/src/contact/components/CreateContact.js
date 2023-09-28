@@ -17,14 +17,14 @@ function CreateContract() {
       <h1>Create Contact</h1>
       <Formik
         initialValues={{
-          someContract: "",
+          someContracts: "",
           startDate: "",
           endDate: "",
           deposit: "",
           totalPrice: ""
         }}
         validationSchema={Yup.object({
-          someContract: Yup.string().required("Some Contract cannot is empty!"),
+          someContracts: Yup.string().required("Some Contract cannot is empty!"),
           startDate: Yup.string().required("Start Date cannot is empty!"),
           endDate: Yup.string().required("End Date cannot is empty!"),
           deposit: Yup.number().required("Deposit cannot is empty").min(1, ("Deposit should more than 0!")),
@@ -43,7 +43,7 @@ function CreateContract() {
               <Field
                 className="form-control"
                 id="numberContact"
-                name="someContract"
+                name="someContracts"
                 type="text"
                 placeholder="Number Contact"
                 data-sb-validations=""
@@ -58,7 +58,7 @@ function CreateContract() {
                 className="form-control"
                 name="startDate"
                 id="startDate"
-                type="text"
+                type="date"
                 placeholder="Start Date"
                 data-sb-validations=""
               />
@@ -72,7 +72,7 @@ function CreateContract() {
                 className="form-control"
                 id="endDate"
                 name="endDate"
-                type="text"
+                type="date"
                 placeholder="End Date"
                 data-sb-validations=""
               />
@@ -99,7 +99,7 @@ function CreateContract() {
               <Field
                 className="form-control"
                 id="totalCoast"
-                name="totalCoast"
+                name="totalPrice"
                 type="text"
                 placeholder="Total Coast"
                 data-sb-validations=""
@@ -110,7 +110,6 @@ function CreateContract() {
               <button
                 className="btn btn-primary"
                 id="submitButton"
-                type="submit"
               >
                 Submit
               </button>
