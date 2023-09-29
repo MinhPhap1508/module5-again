@@ -9,7 +9,7 @@ import { FaRegGem } from "react-icons/fa";
 
 function Customer() {
     const [customer, setCustomer] = useState([]);
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     // const [record, setRecord] = useState();
     const limit = 2;
     const [totalPage, setTotalPage] = useState()
@@ -62,7 +62,7 @@ function Customer() {
             <h2 style={{ textAlign: "center" }}>Customers List</h2>
             <div>
                 <input onChange={(event) => setSearchName(event.target.value)} placeholder="SEARCH" style={{width:"20%"}} />
-                {/* <button className="btn btn-primary" onClick={handleSearch}>Search</button> */}
+                <button className="btn btn-primary" onClick={handleSearch}>Search</button>
             </div>
             <div>
                 <Link to="/create-customers" className='float-end' style={{scale:"1.8"}}><FaRegGem/></Link>

@@ -3,8 +3,8 @@ import axios from "axios"
 export const getAll = async (page, limit, searchName) => {
     try{
         const res = await axios.get(`http://localhost:8080/customers?_page=${page}&_limit=${limit}&fullName_like=${searchName}`)
-        const data = res.data.content;
-        const record = res.data.totalElements;
+        const data = res.data
+        const record = res.headers.get("x-total-count")
         console.log(res);
         console.log(data+"da");
         console.log(record);
@@ -16,7 +16,7 @@ export const getAll = async (page, limit, searchName) => {
 export const getAllCustomerType = async () => {
     try{
         const result = await axios.get("http://localhost:8080/customers/type");
-        return result.data.content;
+        return result.data
     }catch(e){
         console.log(e);
     }
