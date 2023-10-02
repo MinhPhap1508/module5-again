@@ -22,7 +22,7 @@ public class Customers {
     public Customers() {
     }
 
-    public Customers(int id, String fullName, String dateOfBirth, boolean gender, String idCard, int phoneNumber, String email, String address, Type customerType) {
+    public Customers(Integer id, String fullName, String dateOfBirth, Boolean gender, String idCard, int phoneNumber, String email, String address, Type customerType) {
         this.id = id;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
@@ -34,12 +34,31 @@ public class Customers {
         this.customerType = customerType;
     }
 
-    public int getId() {
+    public Customers(String fullName, String dateOfBirth, Boolean gender, String idCard, int phoneNumber, String email, String address, Type customerType) {
+        this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.customerType = customerType;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(Boolean gender) {
+        this.gender = gender;
     }
 
     public String getFullName() {
@@ -104,5 +123,20 @@ public class Customers {
 
     public void setCustomerType(Type customerType) {
         this.customerType = customerType;
+    }
+
+    @Override
+    public String   toString() {
+        return "Customers{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", gender=" + gender +
+                ", idCard='" + idCard + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", customerType=" + customerType +
+                '}';
     }
 }

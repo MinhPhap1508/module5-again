@@ -5,20 +5,25 @@ import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { log } from 'async';
 
 function CreateCustomer() {
   const navigate = useNavigate();
   const [type, setType] = useState([]);
   const addCustomer = async (value) => {
-    const newValue = {...value, customerType:JSON.parse(value.customerType)}
-    await createCustomer(newValue);
-    console.log(newValue);
+    const newValue = await { ...value, customerType: JSON.parse(value.customerType) }
+    // value.customerType= JSON.parse(value.customerType);
     
+    await createCustomer(newValue);
+    navigate("/customers");
+    toast("Added successfully!")
   }
   const loadType = async () => {
     const res = await getAllCustomerType()
+    console.log(res);
     setType(res)
   }
+  console.log(type);
   useEffect(() => {
     loadType()
   }, [])
@@ -27,35 +32,15 @@ function CreateCustomer() {
       initialValues={{
         fullName: "",
         dateOfBirth: "",
-        gender: "1",
+        gender: true,
         idCard: "",
         phoneNumber: "",
         email: "",
-        customerType: {}
+        customerType: JSON.stringify(type[0])
       }}
-      validationSchema={Yup.object({
-        fullName: Yup.string()
-          .required("Customer name cannot be blank")
-          .matches(/^[A-Z][a-z]*$/, "Name is invalid"),
-        dateOfBirth: Yup.string()
-          .required("Dob cannot is empty"),
-        gender: Yup.string().required("Gender cannot is empty"),
-        idCard: Yup.string()
-          .required("ID Card cannot is empty")
-          .matches(/^\d{9}|\d{12}$/, "Id Card is Invalid"),
-        phoneNumber: Yup.string()
-          .required("Phone cannot is empty")
-          .matches(/^(?:\+?84)?(90|91)\d{7}$/, "Invalid"),
-        email: Yup.string()
-          .required("Email cannot is empty")
-          .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Invalid"),
-        address: Yup.string()
-          .required("Address cannot is empty!")
-      })}
-      onSubmit={ (values) => {
-         addCustomer(values)
-         navigate("/customers")
-         toast("Added successfully!")
+
+      onSubmit={(values) => {
+        addCustomer(values);
       }}
     >
       <div className="body">
@@ -96,9 +81,8 @@ function CreateCustomer() {
                 <label>Gender</label>
                 <Field as="select" name="gender">
                   <option className="option" value>--Gender--</option>
-                  <option className="option" value="male">Male</option>
-                  <option className="option" value="famale">Famale</option>
-                  <option className="option" value="other">Other</option>
+                  <option className="option" value="true" >Male</option>
+                  <option className="option" value="false">Famale</option>
                 </Field>
                 <ErrorMessage className='text-danger' name='gender' component='span'></ErrorMessage>
               </div>
@@ -112,11 +96,12 @@ function CreateCustomer() {
               <div className="div">
                 <label>Customer Type</label>
                 <Field as="select" name="customerType">
+                  <option>---- </option>
                   {
                     type.map((ty) => (
-                      
-                        <option className='option' value={`${JSON.stringify(ty)}`}>{ty.name}</option>
-                      
+
+                      <option className='option' value={JSON.stringify(ty)}>{ty.name}</option>
+
                     ))
                   }
                 </Field>

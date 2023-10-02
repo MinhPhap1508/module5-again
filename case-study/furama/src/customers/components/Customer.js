@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // import '../components/customer.css';
-import { deleteCustomer, getAll } from '../service/CustomerService';
+import { deleteCustomer, getAll, getAllByName, getAllCustomerType } from '../service/CustomerService';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Modal from './Modal';
@@ -9,16 +9,23 @@ import { FaRegGem } from "react-icons/fa";
 
 function Customer() {
     const [customer, setCustomer] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    // const [record, setRecord] = useState();
-    const limit = 2;
+    const [page, setPage] = useState(0);
     const [totalPage, setTotalPage] = useState()
     const [searchName, setSearchName] = useState("");
-    const [refesh, setRefesh] = useState(true);
+    const [searchType, setSearchType] = useState("");
+    const [type, setType] = useState([])
     const [modal, setModal] = useState({
         show: false,
         data: null
     });
+
+    const loadType = async () => {
+        const res = await getAllCustomerType()
+        setType(res)
+    }
+    useEffect(() => {
+        loadType()
+    },[])
     const handleCloseModal = () => {
         setModal({
             show: false,
@@ -32,40 +39,50 @@ function Customer() {
         toast("Delete Successfully")
     }
     useEffect(() => {
-        getCustomer(currentPage, searchName)
-    }, [refesh, searchName ])
-    const getCustomer = async (page, searchName) => {
-        const res = await getAll(page, limit, searchName);
-        console.log("list" + res);
-        setCustomer(res[0]);
-        // setRecord(res[1]);
-        setTotalPage(Math.ceil(res[1] / limit));
+        getCustomer()
+    }, [searchName, searchType,page])
+
+    const getCustomer = async () => {
+        const res = await getAllByName(searchName, searchType,page);
+        console.log(res);
+        setTotalPage(res.totalPages)
+        setCustomer(res.content)
     }
     const nextPage = () => {
-        if (currentPage < totalPage) {
-            setCurrentPage(currentPage + 1)
-            setRefesh(!refesh)
+        if (page < totalPage - 1) {
+            setPage((prev) => prev + 1)
         }
     }
     const previosPage = () => {
-        setCurrentPage(currentPage - 1)
-        setRefesh(!refesh)
+        if (page > 0) {
+            setPage((prev) => prev - 1)
+        }
     }
-    const handleSearch = async () => {
-        setCurrentPage(1);
-        getCustomer(currentPage, searchName)
-        setRefesh(!refesh)
-    }
+    // const handleSearch = async () => {
+    //     const search = document.getElementById("search").value
+    //     const typeSearch = document.getElementById("typeSearch").value
+    //     setSearchName(search)
+    //     setSearchType(typeSearch)
+    //     setPage(0)
+    // }
 
     return (
         <div className="container" style={{ marginTop: "2rem" }}>
             <h2 style={{ textAlign: "center" }}>Customers List</h2>
             <div>
-                <input onChange={(event) => setSearchName(event.target.value)} placeholder="SEARCH" style={{width:"20%"}} />
-                <button className="btn btn-primary" onClick={handleSearch}>Search</button>
+                <input onChange={(event) => setSearchName(event.target.value)} placeholder="SEARCH" style={{ width: "20%" }} />
+                {/* <button className="btn btn-primary" onClick={handleSearch}>Search</button> */}
+                <select onChange={(even) => setSearchType(even.target.value)}>
+                    <option value="">---</option>
+                    {
+                        type.map((ty) => (
+                            <option value={ty.id}>{ty.name}</option>
+                        ))
+                    }
+                </select>
             </div>
             <div>
-                <Link to="/create-customers" className='float-end' style={{scale:"1.8"}}><FaRegGem/></Link>
+                <Link to="/create-customers" className='float-end' style={{ scale: "1.8" }}><FaRegGem /></Link>
             </div>
             <div className="table-function" style={{ marginTop: "2rem" }}>
                 <table className='table table-striped table-hover' style={{ marginBottom: "10rem" }}>
@@ -88,7 +105,7 @@ function Customer() {
                                 <tr key={s.id}>
                                     <td>{s.fullName}</td>
                                     <td>{s.dateOfBirth}</td>
-                                    <td>{s.gender}</td>
+                                    <td>{s.gender ? "nam" : "nữ"}</td>
                                     <td>{s.idCard}</td>
                                     <td>{s.phoneNumber}</td>
                                     <td>{s.email}</td>
@@ -107,23 +124,33 @@ function Customer() {
                             )
                         })}
                     </tbody>
-                    
-                    <div style={{ whiteSpace: 'nowrap' }}>
-                    <div style={{ display: 'inline-block', marginRight: '10px' }}>
-                        <button onClick={() => previosPage()} className={`btn btn-primary ${currentPage <= 1 ? "disabled" : ""}`}>
-                            <TbArrowBigLeftLinesFilled/>
-                        </button>
-                    </div>
-                    <div style={{ display: 'inline-block' }}>
-                        <button onClick={() => nextPage()} className={`btn btn-primary ${currentPage >= totalPage ? "disabled" : ""}`}>
-                            <TbArrowBigRightLinesFilled/>
-                        </button>
-                    </div>
-                </div>
-                    
-                    </table>
 
-                
+                    <div className="d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul className="pagination">
+                                <li className="page-item">
+                                    <button className="page-link" onClick={() => (previosPage())} style={{ color: "black" }}>
+                                        Previous
+                                    </button>
+                                </li>
+                                <li className="page-item">
+                                    <span className="page-link" href="#" style={{ color: "black" }}>
+                                        {page + 1}/{totalPage}
+                                    </span>
+                                </li>
+                                <li className="page-item">
+                                    <button className="page-link" onClick={() => nextPage()
+                                    } href="#" style={{ color: "black" }}>
+                                        Next
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </table>
+
+
 
                 {/* modal */}
                 {

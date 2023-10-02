@@ -12,4 +12,8 @@ public interface ICustomerRepository extends JpaRepository<Customers, Integer> {
     Page<Customers> findAll (Pageable pageable, String name);
     @Query(value = "SELECT * FROM customers  WHERE full_name like concat('%',:searchName,'%')",nativeQuery = true)
     Page<Customers> getAllCustomerByName(@Param("searchName") String searchName, Pageable pageable);
+
+    @Query(value = "select  * from  customers where full_name like :searchName and customer_type_id like :idType", nativeQuery = true)
+    Page<Customers> findCustomerByNameContainingAndCustomerTypeID(Pageable pageable, @Param(value = "searchName") String searchName, @Param(value = "idType") String idType);
+
 }

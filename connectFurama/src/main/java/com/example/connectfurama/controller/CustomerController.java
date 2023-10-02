@@ -24,11 +24,12 @@ public class CustomerController {
     ITypeService typeService;
 
     @GetMapping("")
-    public ResponseEntity<Page<Customers>> getList(@RequestParam("_page") int page,
-                                                   @RequestParam("_limit") int size,
-                                                   @RequestParam("fullName_like") String name) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Customers> customersPage = customerService.getAll(pageable, name);
+    public ResponseEntity<Page<Customers>> getList(@RequestParam(value = "_page", defaultValue = "0") int page,
+
+                                                   @RequestParam(value = "fullName_like", defaultValue = "%") String searchName,
+                                                   @RequestParam(value = "customerType.id", defaultValue = "%") String idType) {
+        Pageable pageable = PageRequest.of(page, 2);
+        Page<Customers> customersPage = customerService.getAll(pageable, searchName, idType);
         if (customersPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
@@ -47,7 +48,17 @@ public class CustomerController {
 
     @PostMapping("")
     public ResponseEntity<Customers> addCustomer(@RequestBody Customers customers) {
+        System.out.println(customers);
         customerService.addCustomer(customers);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCustomers(@PathVariable Integer id) {
+        if (customerService.findById(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        customerService.deleteCustomer(id);
+        return ResponseEntity.noContent().build();
     }
 }
